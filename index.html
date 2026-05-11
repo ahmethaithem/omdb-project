@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinePulse - Find Your Next Favorite</title>
+    <!-- Use Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CinePulse<span>.</span></div>
+    </header>
+
+    <main id="main-content">
+        <div id="central-search-container">
+            <h1 class="main-title">Find Your Next Favorite Movie</h1>
+            <form id="search-form">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search for a movie..." required autocomplete="off">
+                    <select id="type-filter" class="filter-input">
+                        <option value="">All Types</option>
+                        <option value="movie">Movie</option>
+                        <option value="series">Series</option>
+                        <option value="episode">Episode</option>
+                    </select>
+                    <input type="number" id="year-filter" class="filter-input" placeholder="Year" min="1900" max="2099">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="welcome-state" class="welcome-container">
+            <div class="welcome-content">
+                <p>Enter a title in the search bar to get started.</p>
+                <div class="movie-icons">
+                    <span>🎬</span>
+                    <span>🍿</span>
+                    <span>⭐</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+        
+        <div id="error-message" class="hidden"></div>
+        
+        <div id="movie-result" class="hidden">
+            <!-- Movie card content will be injected here via JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <p>by Ahmed Mahmood</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

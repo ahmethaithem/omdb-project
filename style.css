@@ -1,0 +1,415 @@
+:root {
+    --bg-color: #141414; /* Netflix-like dark background */
+    --text-color: #ffffff;
+    --primary-color: #e50914; /* Red accent */
+    --card-bg: #1f1f1f;
+    --secondary-text: #b3b3b3;
+    --input-bg: rgba(0, 0, 0, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header & Navigation */
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--text-color);
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 5% 80px 5%;
+    width: 100%;
+}
+
+#central-search-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    transition: transform 0.4s ease;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(to right, #fff, #b3b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Search Form & Filters */
+#search-form {
+    width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+#search-input {
+    flex: 2;
+    min-width: 250px;
+    padding: 16px 24px;
+    border-radius: 30px;
+    border: 1px solid #444;
+    background-color: var(--input-bg);
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    border-color: var(--primary-color);
+    background-color: #000;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+}
+
+.filter-input {
+    flex: 1;
+    min-width: 110px;
+    padding: 16px 20px;
+    border-radius: 30px;
+    border: 1px solid #444;
+    background-color: var(--input-bg);
+    color: white;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+.filter-input:focus {
+    border-color: var(--primary-color);
+    background-color: #000;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.3);
+}
+
+/* Specific styling for dropdown to look good in dark mode */
+select.filter-input option {
+    background-color: var(--card-bg);
+    color: white;
+}
+
+#search-form button {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+}
+
+#search-form button:hover {
+    background-color: #b20710;
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+}
+
+#search-form button:active {
+    transform: scale(0.97);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Loading State */
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 100px;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading p {
+    font-weight: 500;
+    color: var(--secondary-text);
+}
+
+/* Error Message */
+#error-message {
+    background-color: rgba(229, 9, 20, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 20px 25px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    color: #ff6b6b;
+    max-width: 600px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Movie Result Card */
+#movie-result {
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+    from { 
+        opacity: 0; 
+        transform: translateY(40px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.movie-poster {
+    width: 350px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-info {
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movie-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.movie-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.movie-meta span {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.imdb-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #f5c518 !important; /* IMDb Yellow */
+    border-color: rgba(245, 197, 24, 0.3) !important;
+    background-color: rgba(245, 197, 24, 0.1) !important;
+}
+
+.movie-detail {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+
+.movie-detail strong {
+    color: var(--secondary-text);
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.plot {
+    margin-top: 10px;
+    color: #cccccc;
+    font-style: italic;
+    border-left: 3px solid #333;
+    padding-left: 15px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: transparent;
+    margin-top: auto;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 850px) {
+    #movie-result {
+        flex-direction: column;
+    }
+
+    .movie-poster {
+        width: 100%;
+        max-height: 500px;
+    }
+    
+    .movie-poster img {
+        object-position: top;
+    }
+    
+    .movie-info {
+        padding: 30px;
+    }
+    
+    .movie-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #search-form {
+        max-width: 100%;
+    }
+    
+    main {
+        padding: 30px 20px;
+    }
+
+    .movie-title {
+        font-size: 1.8rem;
+    }
+    
+}
+
+/* Welcome State */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 50vh;
+    width: 100%;
+}
+
+.welcome-content {
+    max-width: 600px;
+    padding: 40px;
+    background: linear-gradient(145deg, rgba(31, 31, 31, 0.8), rgba(20, 20, 20, 0.9));
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.welcome-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.welcome-content p {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.movie-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 2.5rem;
+    opacity: 0.8;
+}
+
+.movie-icons span {
+    transition: transform 0.3s ease;
+}
+
+.movie-icons span:hover {
+    transform: scale(1.2);
+}
