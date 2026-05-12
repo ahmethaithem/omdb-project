@@ -1,86 +1,121 @@
-# OMDB Movie Search Project
+# 🎬 CinePulse — Modern Movie Search Application
 
-## How to Set Up Your Repository
-
-**WARNING**: This is a template project. Do not fork this repository.
-
-Please follow the visual steps below to create and set up the project repository on your own GitHub profile.
-
-1. Click the **"Use this template"** button at the top right of this page.
-
-<img width="1920" height="1080" alt="Use this template example" src="https://github.com/user-attachments/assets/137c0f6c-bc6c-4584-8752-02c067051438" />
-<br><br>
-
-2. Select **"Create a new repository"** to generate your own public repository for this task.
-
-<img width="1920" height="1080" alt="Create a new repository" src="https://github.com/user-attachments/assets/87b9032e-6e10-4679-88bb-c42a98894edf" />
-<br><br>
-
-3. Name your repository as **"omdb-project"** and click the **"Create repository"** button.
-
-<img width="1920" height="1080" alt="Create repository" src="https://github.com/user-attachments/assets/dd808d69-6ade-4903-8f77-831b643dbdff" />
-<br><br>
-
-Upload all of your solutions to `github.com/yourusername/omdb-project`.
+> A sleek, responsive Single Page Application for discovering movies, series, and TV episodes — powered by the OMDB API.
 
 ---
 
-## Overview
+## 📌 What is CinePulse?
 
-This project is designed to evaluate your coding skills in web development. You are required to build a simple web application that consumes the [OMDB API](http://www.omdbapi.com/).
+CinePulse is a lightweight web application that lets users instantly search for any movie, series, or TV episode and get back detailed information including the title, release year, genre, director, and poster image — all in real time.
 
-* The application must be a fully responsive **Single Page Application (SPA)** and should display movie details such as **title, year, genre, director, and poster**.
-* The application must be written using **HTML, CSS, and JavaScript**.
-* If your project meets all the requirements, you may extend it with additional functionalities.
-* After development, you must deploy the project using [GitHub Pages](https://pages.github.com). **Projects that are not deployed to GitHub Pages will not be evaluated and will receive 0 points.**
-
-You must **create your own repository using this template** and upload your work there. 
-Do **not** attempt to push changes directly to this repository or any of its original branches.
+No heavy frameworks. No bloat. Just clean, fast, modern web development.
 
 ---
 
-## Functional Requirements
+## ✨ Features
 
-1. **Movie Search Input**
-   - Users must be able to enter a movie name and trigger a search.
-   - A search box and button are sufficient, but adding well-composed UI elements (e.g., filters similar to sahibinden.com) will earn bonus points.
-
-2. **Display Movie Details**
-   - Show at least: Title, Year, Genre, Director, and Poster image.
-   - The design is up to you.
-
-3. **Error Handling**
-   - If the movie is not found or the API returns an error, display a clear message to the user.
-   - Unhandled errors will result in point deductions.
-
-4. **Multiple Searches**
-   - Users should be able to perform multiple searches without refreshing the page.
-   - If the page is refreshed, the last search view should be retained (e.g., using LocalStorage or URL parameters).
-
-5. **Backend Proxy (Optional)**
-   - If you implement a backend, it should handle API requests and return clean JSON to the frontend.
+- 🔍 **Real-time search** across movies, series, and TV episodes
+- 🎛️ **Filters** by content type (Movie / Series / Episode) and release year
+- 🖼️ **Rich detail cards** — poster, genre, director, year, and more
+- 💾 **Search persistence** — your last search survives a page refresh
+- 🔗 **Shareable URLs** — every search updates the URL so you can share it directly
+- 📱 **Fully responsive** design for all screen sizes
 
 ---
 
-## Non-Functional Requirements
+## 🛠️ Tech Stack
 
-1. **Performance**
-   - API calls should be efficient. Avoid unnecessary repeated requests.
+| Technology | Role |
+|---|---|
+| **HTML5** | Semantic page structure and layout |
+| **Vanilla CSS3** | Styling, dark-mode aesthetic, animations |
+| **Vanilla JavaScript (ES6+)** | Core logic, API calls, DOM manipulation |
+| **OMDB API** | Movie database backend service |
 
-2. **Usability**
-   - The interface should be simple, intuitive, and user-friendly.
-   - The design is up to you.
-
-3. **Portability**
-   - The application should work across modern browsers and be responsive for different screen sizes.
-
-4. **Maintainability**
-   - Code should be modular, well-documented, and easy to extend.
+> Built entirely without frameworks to keep the app fast, lightweight, and easy to maintain.
 
 ---
 
-## Deliverables & Submission
+## 🏗️ Project Structure
 
-Once you have completed the project, ensure you have the following ready:
-- A **public GitHub repository** containing your project code (created via the template).
-- A **hosted version** of the project deployed on GitHub Pages.
+```
+cinepulse/
+├── index.html      # Main page structure
+├── style.css       # Visual design system
+└── script.js       # Application logic & API integration
+```
+
+---
+
+## 💡 How It Was Built
+
+### 1. HTML — Structuring the UI
+
+The `index.html` sets up a clean, user-friendly interface centered around a search bar. It includes:
+- A **text input** for the movie name
+- A **dropdown** to filter by type (Movie / Series / Episode)
+- A **year input** for further filtering
+- Placeholder containers for: welcome message, loading spinner, error states, and result cards
+
+---
+
+### 2. CSS — Designing the Experience
+
+The `style.css` implements a premium dark-mode design system using **Google Fonts (Inter)** with:
+- **CSS Flexbox & Grid** for responsive layout
+- **Glassmorphism effects** for depth and modernity
+- **Smooth micro-animations** on card appearance and button hover states
+- A cohesive dark theme with vibrant accent colors
+
+---
+
+### 3. JavaScript — Implementing the Logic
+
+The `script.js` connects the UI to real data with three core responsibilities:
+
+**Fetching Data**
+```javascript
+// Secure async call to the OMDB API
+const response = await fetch(`https://www.omdbapi.com/?t=${title}&apikey=${API_KEY}`);
+const data = await response.json();
+```
+
+**State Management** — handles all UI states cleanly:
+- ⏳ Loading spinner while the request is in flight
+- ❌ Custom error messages when a movie isn't found
+- ✅ Dynamic HTML generation to display the movie result card
+
+**Data Persistence** — uses `localStorage` and `URLSearchParams` to:
+- Save the last search so it survives a page refresh
+- Update the browser URL with each search, making every result shareable
+
+---
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/cinepulse.git
+cd cinepulse
+```
+
+2. Get a free API key from [OMDB API](https://www.omdbapi.com/apikey.aspx)
+
+3. Open `script.js` and replace the placeholder with your key:
+```javascript
+const API_KEY = 'your_api_key_here';
+```
+
+4. Open `index.html` in your browser — that's it, no build step needed!
+
+---
+
+## 🌐 Deployment
+
+CinePulse is ready to deploy on **GitHub Pages** out of the box. Simply push to your repository and enable GitHub Pages from the repository settings.
+
+---
+
+## 👨‍💻 Author
+
+Built with 🎬 and clean code — ready for production.
