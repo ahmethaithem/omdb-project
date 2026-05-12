@@ -118,4 +118,4 @@ CinePulse is ready to deploy on **GitHub Pages** out of the box. Simply push to 
 
 ## 👨‍💻 Author
 
-Built with 🎬 and clean code — ready for production.
+AHMED MAHMOOD
